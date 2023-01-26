@@ -9,7 +9,7 @@ export const Container = tw.div`
   border-b-2
   border-gray-800
   bg-gray-900
-  z-10
+  z-20
   w-full
   sticky
   top-0
