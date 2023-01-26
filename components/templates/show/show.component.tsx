@@ -37,18 +37,31 @@ const ShowTemplate = ({ show }: Props) => {
         show.reviews.length
       : 0;
 
-  const [movieIdList, setValue] = useLocalStorage<number[]>('favorite', []);
+  const [movieOrShow, setValue] = useLocalStorage<
+    { id: number; type: 'movie' | 'show' }[]
+  >('favorite', []);
 
   useEffect(() => {
-    setIsFavoriteMovie(movieIdList.includes(show.id));
-  }, [movieIdList]);
+    setIsFavoriteMovie(
+      movieOrShow.map((element) => element.id).includes(show.id)
+    );
+  }, [movieOrShow]);
 
   const handleFavoriteIconOnClick = () => {
-    if (!movieIdList.includes(show.id)) {
-      movieIdList.push(show.id);
-      setValue(movieIdList);
+    const isAlreadyFavorite = movieOrShow
+      .filter((element) => element.type === 'show')
+      .map((element) => element.id)
+      .includes(show.id);
+
+    if (!isAlreadyFavorite) {
+      movieOrShow.push({ id: show.id, type: 'show' });
+      setValue(movieOrShow);
     } else {
-      setValue(movieIdList.filter((movieId) => movieId !== show.id));
+      setValue(
+        movieOrShow.filter(
+          (movieId) => !(movieId.id === show.id && movieId.type === 'show')
+        )
+      );
     }
   };
 

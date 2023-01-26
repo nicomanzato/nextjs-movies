@@ -40,8 +40,6 @@ export default async function userHandler(
       }
     );
 
-    console.log(recomendation);
-
     const MAX_AGE = 60_000 * 60;
     const EXPIRY_MS = `PX`;
 

@@ -24,10 +24,27 @@ export const getDetailedShow = async (id: number): Promise<ShowWithReview> => {
 };
 
 export const getFavorites = async (
-  ids: number[]
+  movieOrShow: { id: number; type: 'movie' | 'show' }[]
 ): Promise<MovieWithReview[]> => {
-  const fetchPromises = ids.map((id) => http.get(`/api/movie/${id}`));
-  const result = await Promise.all(fetchPromises);
-  console.log(result);
+  const fetchFavoriteMoviePromises = movieOrShow
+    .filter((id) => id.type === 'movie')
+    .map((id) => http.get(`/api/movie/${id.id}`));
+
+  const fetchFavoriteShowsPromises = movieOrShow
+    .filter((id) => id.type === 'show')
+    .map((id) => http.get(`/api/show/${id.id}`));
+
+  const result = await Promise.all([
+    ...fetchFavoriteMoviePromises,
+    ...fetchFavoriteShowsPromises,
+  ]);
+
   return result as MovieWithReview[];
+};
+
+export const getMoviesByKeyword = (keyword: string): Promise<Movie[]> => {
+  return http.get(`/api/movie/search`, {
+    body: JSON.stringify({ keyword }),
+    method: 'POST',
+  });
 };

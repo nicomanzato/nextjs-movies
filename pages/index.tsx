@@ -31,10 +31,12 @@ export async function getServerSideProps() {
 
 const Home = ({ nowPlayingMovies, popularMovies }: Props) => {
   const [favoriteMovies, setFavoriteMovies] = useState<(Movie | Show)[]>([]);
-  const [movieIds] = useLocalStorage('favorite', []);
+  const [movieOrshow] = useLocalStorage<
+    { id: number; type: 'movie' | 'show' }[]
+  >('favorite', []);
 
   useEffect(() => {
-    getFavorites(movieIds).then((movie) => {
+    getFavorites(movieOrshow).then((movie) => {
       setFavoriteMovies(movie);
     });
   }, []);

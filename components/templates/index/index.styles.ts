@@ -21,6 +21,6 @@ export const SliderContainer = tw.div`
 export const Section = tw.section`
   py-2
   w-full
-  lg:py-12
+  lg:py-6
   px-4
 `;

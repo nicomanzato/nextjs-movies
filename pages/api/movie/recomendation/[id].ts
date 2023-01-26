@@ -17,9 +17,7 @@ export default async function userHandler(
     const cachedRecomendation = await redis.get(key);
 
     if (cachedRecomendation) {
-      return res
-        .status(200)
-        .json(JSON.parse(cachedRecomendation).replaceAll('\n', ''));
+      return res.status(200).json(JSON.parse(cachedRecomendation));
     }
 
     try {
