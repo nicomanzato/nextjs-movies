@@ -41,17 +41,19 @@ const HomeTemplate = ({
             ></MovieSlider>
           </SliderContainer>
         </Section>
-        <Section>
-          <Title>Rewatch your favorite movies and shows</Title>
-          <SliderContainer>
-            <MovieSlider
-              centered={false}
-              loop={false}
-              Component={HorizontalSliderMovieCard}
-              movies={favoriteMovies}
-            ></MovieSlider>
-          </SliderContainer>
-        </Section>
+        {favoriteMovies.length > 0 && (
+          <Section>
+            <Title>Rewatch your favorite movies and shows</Title>
+            <SliderContainer>
+              <MovieSlider
+                centered={false}
+                loop={false}
+                Component={HorizontalSliderMovieCard}
+                movies={favoriteMovies}
+              ></MovieSlider>
+            </SliderContainer>
+          </Section>
+        )}
       </Container>
     </PageLayout>
   );
