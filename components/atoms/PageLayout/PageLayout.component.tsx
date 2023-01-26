@@ -8,10 +8,10 @@ interface Props {
 
 export const PageLayout = ({ children }: Props) => {
   return (
-    <Section>
+    <>
       <Header />
-      {children}
+      <Section>{children}</Section>
       <Footer />
-    </Section>
+    </>
   );
 };

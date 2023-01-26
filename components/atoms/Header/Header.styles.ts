@@ -6,6 +6,19 @@ export const Container = tw.div`
   items-center
   text-white
   px-4
+  border-b-2
+  border-gray-800
+  bg-gray-900
+  z-50
+  w-full
+  sticky
+  top-0
+`;
+
+export const MainContent = tw.div`
+  mx-auto
+  w-full
+  max-w-[1440px]
 `;
 
 export const Title = tw.h3`

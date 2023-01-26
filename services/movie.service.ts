@@ -49,7 +49,9 @@ export const getPopularMoviesAndShows = async (
           (genreList.find((genre) => genre.id === genreId) || {}) as MovieGenre
       ),
     })),
-  ];
+  ].sort((aMovieOrShow, otherMovieOrShow) =>
+    aMovieOrShow.popularity < otherMovieOrShow.popularity ? 1 : -1
+  );
 };
 
 export const getDetailedMovie = async (id: number) => {

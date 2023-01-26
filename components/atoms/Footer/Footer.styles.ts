@@ -7,8 +7,11 @@ export const Container = tw.div`
   text-white
   justify-center
   px-4
+  border-t-2
+  border-gray-800
+  
 `;
 
 export const Label = tw.span`
-
+  italic
 `;

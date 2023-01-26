@@ -1,7 +1,7 @@
 import tw from 'twin.macro';
 
 export const Container = tw.div`
-  py-2
+  pb-2
 `;
 
 export const Title = tw.h2`
