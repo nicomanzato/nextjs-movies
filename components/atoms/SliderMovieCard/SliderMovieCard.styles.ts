@@ -1,8 +1,7 @@
 import tw from 'twin.macro';
 
 export const Container = tw.div`
-  w-[280px]
-  lg:w-[315px]
+  w-[300px]
   mx-auto
   bg-gray-800
   text-white
@@ -14,8 +13,7 @@ export const Container = tw.div`
 
 export const ImageContainer = tw.div`
   relative
-  h-[400px]
-  lg:h-[500px]
+  h-[450px]
   mx-auto
 `;
 

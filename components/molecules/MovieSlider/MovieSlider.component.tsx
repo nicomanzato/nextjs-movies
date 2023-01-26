@@ -15,21 +15,14 @@ export const MovieSlider = ({ movies = [] }: Props) => {
       <Swiper
         modules={[Navigation, Pagination, A11y, Mousewheel, Keyboard]}
         loop
-        slidesPerView={1.2}
         centeredSlides
+        slidesPerView={1.25}
+        spaceBetween={30}
         loopedSlides={3}
         keyboard={{
           enabled: true,
         }}
         loopAdditionalSlides={movies && movies.length * 2}
-        breakpoints={{
-          1440: {
-            slidesPerView: 4,
-          },
-          960: {
-            slidesPerView: 3,
-          },
-        }}
         mousewheel={{
           invert: false,
           forceToAxis: true,
