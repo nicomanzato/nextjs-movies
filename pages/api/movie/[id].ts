@@ -1,4 +1,4 @@
-import type { Movie, MovieReview, MovieWithReview } from 'models/movies';
+import type { MovieWithReview } from 'models/movies';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getDetailedMovie } from 'services/movie.service';
 import { redis } from 'utils/redis';
@@ -26,9 +26,8 @@ export default async function userHandler(
 
     await redis.set(key, JSON.stringify(movie), EXPIRY_MS, MAX_AGE);
 
-    res.status(200).json(movie);
-  } else {
-    res.setHeader('Allow', ['GET', 'PUT']);
-    res.status(405).end(`Method ${method} Not Allowed`);
+    return res.status(200).json(movie);
   }
+  res.setHeader('Allow', ['GET', 'PUT']);
+  return res.status(405).end(`Method ${method} Not Allowed`);
 }

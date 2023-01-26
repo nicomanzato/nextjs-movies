@@ -1,5 +1,5 @@
-import tw from 'twin.macro';
 import Image from 'next/image';
+import tw from 'twin.macro';
 
 export const Container = tw.div`
   w-[300px]

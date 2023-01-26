@@ -1,5 +1,5 @@
 import MovieTemplate from 'components/templates/movie/movie.component';
-import type { Movie, MovieReview, MovieWithReview } from 'models/movies';
+import type { MovieWithReview } from 'models/movies';
 import { getDetailedMovie } from 'services/movie.service';
 
 interface Props {
