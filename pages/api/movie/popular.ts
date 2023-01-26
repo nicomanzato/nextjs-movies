@@ -1,9 +1,8 @@
 import { genresMock } from 'mock/genres';
-import { Genre } from 'models/genres';
-import type { Movie, MovieReview, MovieWithReview } from 'models/movies';
-import { Show } from 'models/show';
+import type { Genre } from 'models/genres';
+import type { Movie } from 'models/movies';
+import type { Show } from 'models/show';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getDetailedMovie } from 'services/movie.service';
 import { http } from 'utils/http';
 import { redis } from 'utils/redis';
 
@@ -11,8 +10,7 @@ export default async function userHandler(
   req: NextApiRequest,
   res: NextApiResponse<(Movie | Show)[]>
 ) {
-  const { query, method } = req;
-  const id = parseInt(query.id as string, 10);
+  const { method } = req;
 
   if (method === 'GET') {
     const key = `movie/popular`;

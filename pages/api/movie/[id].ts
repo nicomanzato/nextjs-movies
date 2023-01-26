@@ -1,6 +1,5 @@
 import type { Movie, MovieReview, MovieWithReview } from 'models/movies';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getDetailedMovie } from 'services/movie.service';
 import { http } from 'utils/http';
 import { redis } from 'utils/redis';
 
