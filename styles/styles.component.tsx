@@ -9,7 +9,11 @@ const CustomStyles = createGlobalStyle`
     background-color: ${theme`colors.gray.900`};
     overflow-x: hidden;
     ${tw`antialiased`}
-
+    
+    img {
+      transition: 0.3s;
+    }
+    
     a:hover {
       color: ${theme`colors.gray.500`};
     }
