@@ -105,6 +105,8 @@ const MovieTemplate = ({ movie }: Props) => {
           </HeaderDetails>
           <Subtitle>Overview</Subtitle>
           <Overview>{movie.overview}</Overview>
+          <Subtitle>Why should you watch it</Subtitle>
+          <Overview>{movie.recomendation}</Overview>
         </DetailsContainer>
       </Container>
     </PageLayout>

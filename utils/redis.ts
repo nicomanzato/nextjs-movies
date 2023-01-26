@@ -40,11 +40,13 @@ export function createRedisInstance(config = getRedisConfiguration()) {
     const redis = new Redis(options);
 
     redis.on('error', (error: unknown) => {
+      redis.quit();
       console.warn('[Redis] Error connecting', error);
     });
 
     return redis;
   } catch (e) {
+    redis.quit();
     throw new Error(`[Redis] Could not create a Redis instance`);
   }
 }

@@ -16,7 +16,7 @@ export default async function userHandler(
     const cachedMovie = await redis.get(key);
 
     if (cachedMovie) {
-      return res.status(200).json(JSON.parse(cachedMovie));
+      // return res.status(200).json(JSON.parse(cachedMovie));
     }
 
     const moviePromise = http.get<Movie>(
@@ -29,10 +29,27 @@ export default async function userHandler(
 
     const [movie, reviews] = await Promise.all([moviePromise, reviewPromise]);
 
-    const movieWithReview = { ...movie, reviews: reviews.results };
+    const { recomendation } = await http.get<{ recomendation: string }>(
+      `${process.env.HOST}/api/movie/recomendation/${id}`,
+      {
+        body: JSON.stringify({ name: movie.title }),
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    console.log(recomendation);
 
     const MAX_AGE = 60_000 * 60;
     const EXPIRY_MS = `PX`;
+
+    const movieWithReview: MovieWithReview = {
+      ...movie,
+      reviews: reviews.results,
+      recomendation,
+    };
 
     await redis.set(key, JSON.stringify(movieWithReview), EXPIRY_MS, MAX_AGE);
 

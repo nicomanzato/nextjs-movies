@@ -20,6 +20,7 @@ export interface Movie {
 
 export interface MovieWithReview extends Movie {
   reviews: MovieReview[];
+  recomendation: string;
 }
 
 interface AuthorDetails {
