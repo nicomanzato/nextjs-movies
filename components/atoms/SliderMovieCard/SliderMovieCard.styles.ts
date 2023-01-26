@@ -8,16 +8,22 @@ export const Container = tw.div`
   text-white
   overflow-hidden
   rounded-2xl
+  hover:cursor-pointer
+  hover:(shadow-2xl)
 `;
 
 export const ImageContainer = tw.div`
   relative
-  h-[500px]
+  h-[400px]
+  lg:h-[500px]
   mx-auto
 `;
 
 export const DetailsContainer = tw.div`
-  p-2
+  px-4
+  py-3
+  min-h-[200px]
+  lg:min-h-[180px]
 `;
 
 export const Title = tw.h3`
@@ -33,7 +39,8 @@ export const GenreContainer = tw.div`
 export const Genre = tw.span`
   p-1
   px-3
-  m-1
+  mr-1
+  mb-2
   rounded-2xl
   bg-gray-600
 `;

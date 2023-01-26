@@ -15,7 +15,7 @@ export const MovieSlider = ({ movies = [] }: Props) => {
       <Swiper
         modules={[Navigation, Pagination, A11y, Mousewheel, Keyboard]}
         loop
-        slidesPerView={1}
+        slidesPerView={1.2}
         centeredSlides
         loopedSlides={3}
         keyboard={{

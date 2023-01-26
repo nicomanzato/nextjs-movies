@@ -18,6 +18,8 @@ export default class AppDocument extends Document {
         ...initialProps,
         styles: (
           <>
+            <title>The Film club</title>
+            <link rel="icon" href="/logo.jpg"></link>
             {initialProps.styles}
             {sheet.getStyleElement()}
           </>
