@@ -12,9 +12,12 @@ export const Container = tw.div`
   border-2
   transition
   duration-300
-  lg:(hover:scale-105)
+  lg:(
+    hover:scale-105
+    hover:border-gray-300
+  )
   hover:cursor-pointer
-  hover:border-gray-300
+  
 `;
 
 export const ImageContainer = tw.div`

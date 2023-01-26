@@ -11,10 +11,12 @@ export const Container = tw.div`
   border-gray-900
   duration-300
   border-2
-  hover:cursor-pointer
-  hover:scale-105
-  hover:border-gray-300
-  hover:shadow-2xl
+  lg:(
+    hover:cursor-pointer
+    hover:scale-105
+    hover:border-gray-300
+    hover:shadow-2xl
+  )
 `;
 
 export const Title = tw.span`
