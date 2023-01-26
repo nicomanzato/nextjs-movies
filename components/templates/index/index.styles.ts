@@ -8,7 +8,6 @@ export const Title = tw.h2`
   text-white
   text-2xl
   font-bold
-  px-4
 `;
 
 export const SliderContainer = tw.div`
@@ -16,5 +15,7 @@ export const SliderContainer = tw.div`
 `;
 
 export const Section = tw.section`
-  py-12
+  py-2
+  lg:py-12
+  px-4
 `;
