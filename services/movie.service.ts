@@ -1,9 +1,9 @@
-import type { MovieGenre } from 'models/genres';
-import type { Movie, MovieReview } from 'models/movies';
-import type { Show } from 'models/show';
+import type { Genre } from 'models/genres';
+import type { Movie, MovieReview, MovieWithReview } from 'models/movies';
+import type { Show, ShowWithReview } from 'models/show';
 import { http } from 'utils/http';
 
-export const getNowPlayingMovies = async (genreList: MovieGenre[]) => {
+export const getNowPlayingMovies = async (genreList: Genre[]) => {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.NEXTJS_TMDB_API_KEY}&language=en-US&page=1`
   );
@@ -13,13 +13,13 @@ export const getNowPlayingMovies = async (genreList: MovieGenre[]) => {
   return parsedResponse.map((movie) => ({
     ...movie,
     genres: movie.genre_ids.map(
-      (genreId) => genreList.find((genre) => genre.id === genreId) as MovieGenre
+      (genreId) => genreList.find((genre) => genre.id === genreId) as Genre
     ),
   }));
 };
 
 export const getPopularMoviesAndShows = async (
-  genreList: MovieGenre[]
+  genreList: Genre[]
 ): Promise<(Movie | Show)[]> => {
   const popularMovies = (
     await http.get<{ results: Movie[] }>(
@@ -34,11 +34,11 @@ export const getPopularMoviesAndShows = async (
   ).results;
 
   return [
-    ...popularShows.map((movie) => ({
-      ...movie,
-      genres: movie.genre_ids.map(
+    ...popularShows.map((show) => ({
+      ...show,
+      genres: show.genre_ids.map(
         (genreId) =>
-          (genreList.find((genre) => genre.id === genreId) || {}) as MovieGenre
+          (genreList.find((genre) => genre.id === genreId) || {}) as Genre
       ),
     })),
 
@@ -46,7 +46,7 @@ export const getPopularMoviesAndShows = async (
       ...movie,
       genres: movie.genre_ids.map(
         (genreId) =>
-          (genreList.find((genre) => genre.id === genreId) || {}) as MovieGenre
+          (genreList.find((genre) => genre.id === genreId) || {}) as Genre
       ),
     })),
   ].sort((aMovieOrShow, otherMovieOrShow) =>
@@ -54,7 +54,9 @@ export const getPopularMoviesAndShows = async (
   );
 };
 
-export const getDetailedMovie = async (id: number) => {
+export const getDetailedMovie = async (
+  id: number
+): Promise<MovieWithReview> => {
   const moviePromise = http.get<Movie>(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXTJS_TMDB_API_KEY}&language=en-US`
   );
@@ -65,11 +67,11 @@ export const getDetailedMovie = async (id: number) => {
 
   const [movie, reviews] = await Promise.all([moviePromise, reviewPromise]);
 
-  return { movie, reviews: reviews.results };
+  return { ...movie, reviews: reviews.results };
 };
 
-export const getDetailedShow = async (id: number) => {
-  const moviePromise = http.get<Movie>(
+export const getDetailedShow = async (id: number): Promise<ShowWithReview> => {
+  const showPromise = http.get<Show>(
     `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.NEXTJS_TMDB_API_KEY}&language=en-US`
   );
 
@@ -77,14 +79,16 @@ export const getDetailedShow = async (id: number) => {
     `https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${process.env.NEXTJS_TMDB_API_KEY}&language=en-US&page=1`
   );
 
-  const [movie, reviews] = await Promise.all([moviePromise, reviewPromise]);
+  const [show, reviews] = await Promise.all([showPromise, reviewPromise]);
 
-  return { movie, reviews: reviews.results };
+  return { ...show, reviews: reviews.results };
 };
 
 export const getFavorites = async (
   ids: number[]
-): Promise<(Movie | Show)[]> => {
+): Promise<MovieWithReview[]> => {
   const fetchPromises = ids.map((id) => http.get(`/api/movie/${id}`));
-  return Promise.all(fetchPromises) as unknown as (Movie | Show)[];
+  const result = await Promise.all(fetchPromises);
+  console.log(result);
+  return result as MovieWithReview[];
 };

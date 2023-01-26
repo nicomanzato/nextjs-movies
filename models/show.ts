@@ -1,8 +1,12 @@
+import { Genre } from './genres';
+import { MovieReview } from './movies';
+
 export interface Show {
   backdrop_path: string;
   first_air_date: string;
   genre_ids: number[];
   id: number;
+  genres: Genre[];
   name: string;
   origin_country: string[];
   original_language: string;
@@ -12,4 +16,8 @@ export interface Show {
   poster_path: string;
   vote_average: number;
   vote_count: number;
+}
+
+export interface ShowWithReview extends Show {
+  reviews: MovieReview[];
 }

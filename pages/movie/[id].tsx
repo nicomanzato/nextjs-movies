@@ -1,10 +1,9 @@
 import MovieTemplate from 'components/templates/movie/movie.component';
-import type { Movie, MovieReview } from 'models/movies';
+import type { Movie, MovieReview, MovieWithReview } from 'models/movies';
 import { getDetailedMovie } from 'services/movie.service';
 
 interface Props {
-  movie: Movie;
-  reviews: MovieReview[];
+  movie: MovieWithReview;
 }
 
 export async function getServerSideProps({
@@ -12,18 +11,17 @@ export async function getServerSideProps({
 }: {
   params: { id: number };
 }) {
-  const { movie, reviews } = await getDetailedMovie(params.id);
+  const movie = await getDetailedMovie(params.id);
 
   return {
     props: {
       movie,
-      reviews,
     },
   };
 }
 
-const MovieDetail = ({ movie, reviews }: Props) => {
-  return <MovieTemplate movie={movie} reviews={reviews} />;
+const MovieDetail = ({ movie }: Props) => {
+  return <MovieTemplate movie={movie} />;
 };
 
 export default MovieDetail;

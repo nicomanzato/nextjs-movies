@@ -1,10 +1,10 @@
-import type { MovieGenre } from './genres';
+import type { Genre } from './genres';
 
 export interface Movie {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
-  genres: MovieGenre[];
+  genres: Genre[];
   id: number;
   original_language: string;
   original_title: string;
@@ -16,6 +16,10 @@ export interface Movie {
   video: boolean;
   vote_average: number;
   vote_count: number;
+}
+
+export interface MovieWithReview extends Movie {
+  reviews: MovieReview[];
 }
 
 interface AuthorDetails {

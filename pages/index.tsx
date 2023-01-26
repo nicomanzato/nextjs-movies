@@ -32,9 +32,10 @@ export async function getServerSideProps() {
 const Home = ({ nowPlayingMovies, popularMovies }: Props) => {
   const [favoriteMovies, setFavoriteMovies] = useState<(Movie | Show)[]>([]);
   const [movieIds] = useLocalStorage('favorite', []);
+
   useEffect(() => {
-    getFavorites(movieIds).then((movies) => {
-      setFavoriteMovies(movies);
+    getFavorites(movieIds).then((movie) => {
+      setFavoriteMovies(movie);
     });
   }, []);
 

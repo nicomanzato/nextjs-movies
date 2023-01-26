@@ -16,5 +16,5 @@ export const SliderContainer = tw.div`
 `;
 
 export const Section = tw.section`
-  my-12
+  py-12
 `;

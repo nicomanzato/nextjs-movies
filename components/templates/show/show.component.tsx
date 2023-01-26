@@ -3,6 +3,7 @@ import { FavoriteIcon } from 'components/atoms/Icon/FavoriteIcon.component';
 import { PageLayout } from 'components/atoms/PageLayout/PageLayout.component';
 import { StatIndicator } from 'components/StatIndicator/StatIndicator.component';
 import type { Movie, MovieReview, MovieWithReview } from 'models/movies';
+import { ShowWithReview } from 'models/show';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
@@ -21,34 +22,34 @@ import {
   PosterContainer,
   Subtitle,
   Title,
-} from './movie.styles';
+} from './show.styles';
 
 interface Props {
-  movie: MovieWithReview;
+  show: ShowWithReview;
 }
 
-const MovieTemplate = ({ movie }: Props) => {
+const ShowTemplate = ({ show }: Props) => {
   const [isFavoriteMovie, setIsFavoriteMovie] = useState(false);
   const reviewAverage =
-    movie.reviews.length > 0
-      ? movie.reviews
+    show.reviews.length > 0
+      ? show.reviews
           .map((review) => review.author_details.rating || 0)
           .reduce((accumulator, value) => accumulator + value) /
-        movie.reviews.length
+        show.reviews.length
       : 0;
 
   const [movieIdList, setValue] = useLocalStorage<number[]>('favorite', []);
 
   useEffect(() => {
-    setIsFavoriteMovie(movieIdList.includes(movie.id));
+    setIsFavoriteMovie(movieIdList.includes(show.id));
   }, [movieIdList]);
 
   const handleFavoriteIconOnClick = () => {
-    if (!movieIdList.includes(movie.id)) {
-      movieIdList.push(movie.id);
+    if (!movieIdList.includes(show.id)) {
+      movieIdList.push(show.id);
       setValue(movieIdList);
     } else {
-      setValue(movieIdList.filter((movieId) => movieId !== movie.id));
+      setValue(movieIdList.filter((movieId) => movieId !== show.id));
     }
   };
 
@@ -59,29 +60,29 @@ const MovieTemplate = ({ movie }: Props) => {
           <BackdropGradient />
           <Image
             alt={''}
-            src={`https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/w1280/${show.backdrop_path}`}
             layout="fill"
             objectFit="cover"
             placeholder="blur"
-            blurDataURL={`https://image.tmdb.org/t/p/w185/${movie.backdrop_path}`}
+            blurDataURL={`https://image.tmdb.org/t/p/w185/${show.backdrop_path}`}
           />
         </BackdropContainer>
         <PosterContainer>
           <Image
             alt={''}
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
             layout="fill"
             objectFit="cover"
             placeholder="blur"
-            blurDataURL={`https://image.tmdb.org/t/p/w92/${movie.poster_path}`}
+            blurDataURL={`https://image.tmdb.org/t/p/w92/${show.poster_path}`}
           />
         </PosterContainer>
         <DetailsContainer>
           <HeaderDetails>
             <div>
-              <Title>{movie.title}</Title>
+              <Title>{show.name}</Title>
               <GenreContainer>
-                {movie.genres.map((genre) => (
+                {show.genres.map((genre) => (
                   <Genre key={genre.id}>{genre.name}</Genre>
                 ))}
               </GenreContainer>
@@ -104,11 +105,11 @@ const MovieTemplate = ({ movie }: Props) => {
             </HeaderIconsContainer>
           </HeaderDetails>
           <Subtitle>Overview</Subtitle>
-          <Overview>{movie.overview}</Overview>
+          <Overview>{show.overview}</Overview>
         </DetailsContainer>
       </Container>
     </PageLayout>
   );
 };
 
-export default MovieTemplate;
+export default ShowTemplate;

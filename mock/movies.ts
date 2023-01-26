@@ -1,4 +1,4 @@
-import type { MovieGenre } from 'models/genres';
+import type { Genre } from 'models/genres';
 import type { Movie } from 'models/movies';
 
 import { genresMock } from './genres';
@@ -347,6 +347,6 @@ export const moviesMock: Movie[] = [
 ].map((movie) => ({
   ...movie,
   genres: movie.genre_ids.map(
-    (genreId) => genresMock.find((genre) => genre.id === genreId) as MovieGenre
+    (genreId) => genresMock.find((genre) => genre.id === genreId) as Genre
   ),
 }));

@@ -6,6 +6,7 @@ export const Container = tw.div`
   justify-center
   items-center
   text-white
+  z-0
 `;
 
 export const SelectContainer = tw.div`

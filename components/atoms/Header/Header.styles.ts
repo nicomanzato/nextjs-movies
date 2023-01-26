@@ -9,7 +9,7 @@ export const Container = tw.div`
   border-b-2
   border-gray-800
   bg-gray-900
-  z-50
+  z-10
   w-full
   sticky
   top-0
@@ -29,5 +29,6 @@ export const Title = tw.h3`
 export const LogoContainer = tw.div`
   flex
   items-center
+  w-[fit-content]
   hover:cursor-pointer
 `;
