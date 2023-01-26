@@ -9,6 +9,10 @@ const CustomStyles = createGlobalStyle`
     background-color: ${theme`colors.gray.900`};
     overflow-x: hidden;
     ${tw`antialiased`}
+
+    a:hover {
+      color: ${theme`colors.gray.500`};
+    }
   }
 `;
 

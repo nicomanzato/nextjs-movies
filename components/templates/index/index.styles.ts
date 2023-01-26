@@ -10,3 +10,11 @@ export const Title = tw.h2`
   font-bold
   px-4
 `;
+
+export const SliderContainer = tw.div`
+  my-6
+`;
+
+export const Section = tw.section`
+  my-12
+`;

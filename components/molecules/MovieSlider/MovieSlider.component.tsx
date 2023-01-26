@@ -1,23 +1,32 @@
 import type { Movie } from 'models/movies';
+import type { Show } from 'models/show';
 import { A11y, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { Container } from './MovieSlider.styles';
 
 interface Props {
-  movies: Movie[];
+  movies: (Movie | Show)[];
   Component: any;
   centered?: boolean;
+  slidesPerView?: number;
+  loop?: boolean;
 }
 
-export const MovieSlider = ({ movies = [], Component, centered }: Props) => {
+export const MovieSlider = ({
+  movies = [],
+  Component,
+  centered = true,
+  slidesPerView = 1.25,
+  loop = true,
+}: Props) => {
   return (
-    <Container>
+    <Container centered={centered}>
       <Swiper
         modules={[Navigation, Pagination, A11y, Mousewheel, Keyboard]}
-        loop
+        loop={loop}
         centeredSlides={centered}
-        slidesPerView={1.25}
+        slidesPerView={slidesPerView}
         spaceBetween={30}
         loopedSlides={3}
         keyboard={{

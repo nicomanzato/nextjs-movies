@@ -1,3 +1,4 @@
+import { Footer } from '../Footer/Footer.component';
 import { Header } from '../Header/Header.component';
 import { Section } from './PageLayout.styles';
 
@@ -8,8 +9,9 @@ interface Props {
 export const PageLayout = ({ children }: Props) => {
   return (
     <Section>
-      <Header></Header>
+      <Header />
       {children}
+      <Footer />
     </Section>
   );
 };

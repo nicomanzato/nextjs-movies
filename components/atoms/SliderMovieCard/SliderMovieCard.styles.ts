@@ -7,8 +7,14 @@ export const Container = tw.div`
   text-white
   overflow-hidden
   rounded-2xl
+  shadow-2xl
+  border-gray-900
+  border-2
+  transition
+  duration-300
+  lg:(hover:scale-105)
   hover:cursor-pointer
-  hover:(shadow-2xl)
+  hover:border-gray-300
 `;
 
 export const ImageContainer = tw.div`
@@ -26,6 +32,7 @@ export const DetailsContainer = tw.div`
 
 export const Title = tw.h3`
   text-base
+  font-bold
   mb-4
 `;
 

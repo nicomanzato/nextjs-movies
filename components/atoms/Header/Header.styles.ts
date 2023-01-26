@@ -13,4 +13,8 @@ export const Title = tw.h3`
   pl-4
 `;
 
-export const LogoContainer = tw.div`flex items-center hover:cursor-pointer`;
+export const LogoContainer = tw.div`
+  flex
+  items-center
+  hover:cursor-pointer
+`;
