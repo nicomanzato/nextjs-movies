@@ -1,5 +1,4 @@
 import type { Movie } from 'models/movies';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import { Genre } from '../Genre/Genre.component';
@@ -8,6 +7,7 @@ import {
   DetailsContainer,
   GenreContainer,
   ImageContainer,
+  StyledImage,
   Title,
 } from './SliderMovieCard.styles';
 
@@ -17,7 +17,7 @@ export const SliderMovieCard = ({ movie }: { movie: Movie }) => {
   return (
     <Container onClick={() => router.push(`/movie/${movie.id}`)}>
       <ImageContainer>
-        <Image
+        <StyledImage
           src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
           layout="fill"
           alt={'Movie poster'}

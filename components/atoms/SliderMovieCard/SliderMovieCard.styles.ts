@@ -1,4 +1,5 @@
 import tw from 'twin.macro';
+import Image from 'next/image';
 
 export const Container = tw.div`
   w-[300px]
@@ -24,6 +25,10 @@ export const ImageContainer = tw.div`
   relative
   h-[450px]
   mx-auto
+  overflow-hidden
+`;
+
+export const StyledImage = tw(Image)`
   rounded-t-2xl
   overflow-hidden
 `;
