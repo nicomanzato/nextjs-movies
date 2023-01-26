@@ -50,3 +50,8 @@ export function createRedisInstance(config = getRedisConfiguration()) {
 }
 
 export const redis = createRedisInstance();
+
+process.on('SIGINT', function () {
+  redis.quit();
+  console.log('redis client quit');
+});
