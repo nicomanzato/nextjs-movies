@@ -1,11 +1,15 @@
+import { Genre } from 'components/atoms/Genre/Genre.component';
 import { PageLayout } from 'components/atoms/PageLayout/PageLayout.component';
-import type { Movie } from 'models/movies';
+import { StatIndicator } from 'components/StatIndicator/StatIndicator.component';
+import type { Movie, MovieReview } from 'models/movies';
 import Image from 'next/image';
 
 import {
   BackdropContainer,
   Container,
   DetailsContainer,
+  GenreContainer,
+  HeaderDetails,
   Overview,
   PosterContainer,
   Subtitle,
@@ -14,9 +18,17 @@ import {
 
 interface Props {
   movie: Movie;
+  reviews: MovieReview[];
 }
 
-const MovieTemplate = ({ movie }: Props) => {
+const MovieTemplate = ({ movie, reviews }: Props) => {
+  const reviewAverage =
+    reviews.length > 0
+      ? reviews
+          .map((review) => review.author_details.rating || 0)
+          .reduce((accumulator, value) => accumulator + value) / reviews.length
+      : 0;
+
   return (
     <PageLayout>
       <Container>
@@ -41,7 +53,19 @@ const MovieTemplate = ({ movie }: Props) => {
           />
         </PosterContainer>
         <DetailsContainer>
-          <Title>{movie.title}</Title>
+          <HeaderDetails>
+            <div>
+              <Title>{movie.title}</Title>
+              <GenreContainer>
+                {movie.genres.map((genre) => (
+                  <Genre key={genre.id}>{genre.name}</Genre>
+                ))}
+              </GenreContainer>
+            </div>
+            {reviewAverage > 0 && (
+              <StatIndicator value={reviewAverage} label="Review Rating" />
+            )}
+          </HeaderDetails>
           <Subtitle>Overview</Subtitle>
           <Overview>{movie.overview}</Overview>
         </DetailsContainer>

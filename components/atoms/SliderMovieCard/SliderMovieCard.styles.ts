@@ -35,12 +35,3 @@ export const GenreContainer = tw.div`
   flex
   flex-wrap
 `;
-
-export const Genre = tw.span`
-  p-1
-  px-3
-  mr-1
-  mb-2
-  rounded-2xl
-  bg-gray-600
-`;

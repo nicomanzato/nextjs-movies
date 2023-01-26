@@ -2,10 +2,10 @@ import type { Movie } from 'models/movies';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { Genre } from '../Genre/Genre.component';
 import {
   Container,
   DetailsContainer,
-  Genre,
   GenreContainer,
   ImageContainer,
   Title,

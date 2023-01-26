@@ -1,5 +1,6 @@
 import type { MovieGenre } from 'models/genres';
-import type { Movie } from 'models/movies';
+import type { Movie, MovieReview } from 'models/movies';
+import { http } from 'utils/http';
 
 export const getNowPlayingMovies = async (genreList: MovieGenre[]) => {
   const response = await fetch(
@@ -17,10 +18,15 @@ export const getNowPlayingMovies = async (genreList: MovieGenre[]) => {
 };
 
 export const getDetailedMovie = async (id: number) => {
-  const response = await fetch(
+  const moviePromise = http.get<Movie>(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXTJS_TMDB_API_KEY}&language=en-US`
   );
-  const parsedResponse = await response.json();
 
-  return parsedResponse;
+  const reviewPromise = http.get<{ results: MovieReview[] }>(
+    `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.NEXTJS_TMDB_API_KEY}&language=en-US&page=1`
+  );
+
+  const [movie, reviews] = await Promise.all([moviePromise, reviewPromise]);
+
+  return { movie, reviews: reviews.results };
 };
