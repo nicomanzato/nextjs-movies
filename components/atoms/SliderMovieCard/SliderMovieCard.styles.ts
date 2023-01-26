@@ -24,6 +24,8 @@ export const ImageContainer = tw.div`
   relative
   h-[450px]
   mx-auto
+  rounded-t-2xl
+  overflow-hidden
 `;
 
 export const DetailsContainer = tw.div`
