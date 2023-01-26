@@ -5,8 +5,9 @@ export const Container = tw.div`
   flex
   justify-center
   items-center
+  w-full
   text-white
-  z-0
+  z-10
 `;
 
 export const SelectContainer = tw.div`
