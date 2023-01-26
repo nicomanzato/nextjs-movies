@@ -2,6 +2,10 @@ import tw from 'twin.macro';
 
 export const Container = tw.div`
   py-2
+  flex
+  flex-col
+  items-center
+  justify-center
 `;
 
 export const Title = tw.h2`
@@ -16,6 +20,7 @@ export const SliderContainer = tw.div`
 
 export const Section = tw.section`
   py-2
+  w-full
   lg:py-12
   px-4
 `;

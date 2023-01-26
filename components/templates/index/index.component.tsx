@@ -23,7 +23,9 @@ const HomeTemplate = ({
     <PageLayout>
       <Container>
         <MovieSearcher />
-        <Title>Now in theaters</Title>
+        <Section>
+          <Title>Now in theaters</Title>
+        </Section>
         <SliderContainer>
           <MovieSlider
             centered

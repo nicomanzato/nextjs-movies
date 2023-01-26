@@ -27,10 +27,15 @@ export const MovieSlider = ({
         loop={loop}
         centeredSlides={centered}
         slidesPerView={slidesPerView}
-        spaceBetween={30}
+        spaceBetween={8}
         loopedSlides={3}
         keyboard={{
           enabled: true,
+        }}
+        breakpoints={{
+          960: {
+            spaceBetween: 30,
+          },
         }}
         loopAdditionalSlides={movies && movies.length * 2}
         mousewheel={{
