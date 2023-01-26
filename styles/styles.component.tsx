@@ -10,10 +10,6 @@ const CustomStyles = createGlobalStyle`
     overflow-x: hidden;
     ${tw`antialiased`}
     
-    img {
-      transition: 0.3s;
-    }
-    
     a:hover {
       color: ${theme`colors.gray.500`};
     }
