@@ -17,6 +17,7 @@ export const PosterContainer = tw.div`
   w-[240px]
   -mt-48
   mx-auto
+  z-20
   lg:mx-8
   
 `;
@@ -59,4 +60,13 @@ export const HeaderDetails = tw.div`
   grid
   grid-cols-1
   lg:grid-cols-2
+`;
+
+export const BackdropGradient = tw.div`
+  absolute
+  w-full
+  h-full
+  bg-black
+  bg-opacity-60
+  z-10
 `;

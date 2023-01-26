@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 import {
   BackdropContainer,
+  BackdropGradient,
   Container,
   DetailsContainer,
   GenreContainer,
@@ -33,6 +34,7 @@ const MovieTemplate = ({ movie, reviews }: Props) => {
     <PageLayout>
       <Container>
         <BackdropContainer>
+          <BackdropGradient />
           <Image
             alt={''}
             src={`https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`}
