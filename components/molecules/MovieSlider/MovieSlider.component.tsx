@@ -1,4 +1,3 @@
-import { SliderMovieCard } from 'components/atoms/SliderMovieCard/SliderMovieCard.component';
 import type { Movie } from 'models/movies';
 import { A11y, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -7,15 +6,17 @@ import { Container } from './MovieSlider.styles';
 
 interface Props {
   movies: Movie[];
+  Component: any;
+  centered?: boolean;
 }
 
-export const MovieSlider = ({ movies = [] }: Props) => {
+export const MovieSlider = ({ movies = [], Component, centered }: Props) => {
   return (
     <Container>
       <Swiper
         modules={[Navigation, Pagination, A11y, Mousewheel, Keyboard]}
         loop
-        centeredSlides
+        centeredSlides={centered}
         slidesPerView={1.25}
         spaceBetween={30}
         loopedSlides={3}
@@ -31,7 +32,7 @@ export const MovieSlider = ({ movies = [] }: Props) => {
       >
         {movies.map((movie) => (
           <SwiperSlide key={movie.id}>
-            <SliderMovieCard movie={movie} />
+            <Component movie={movie} />
           </SwiperSlide>
         ))}
       </Swiper>

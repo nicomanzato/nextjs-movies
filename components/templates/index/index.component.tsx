@@ -1,4 +1,5 @@
 import { PageLayout } from 'components/atoms/PageLayout/PageLayout.component';
+import { SliderMovieCard } from 'components/atoms/SliderMovieCard/SliderMovieCard.component';
 import { MovieSlider } from 'components/molecules/MovieSlider/MovieSlider.component';
 import type { Movie } from 'models/movies';
 
@@ -15,7 +16,11 @@ const HomeTemplate = ({ nowPlayingMovies }: Props) => {
       <Container>
         <MovieSearcher />
         <Title>Now in theaters</Title>
-        <MovieSlider movies={nowPlayingMovies}></MovieSlider>
+        <MovieSlider
+          centered
+          Component={SliderMovieCard}
+          movies={nowPlayingMovies}
+        ></MovieSlider>
       </Container>
     </PageLayout>
   );

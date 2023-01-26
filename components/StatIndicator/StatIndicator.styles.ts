@@ -8,12 +8,13 @@ export const Container = tw.div`
 
 export const Value = tw.div`
   rounded-full
-  w-16
-  h-16
+  w-14
+  h-14
   border-2
   flex
   items-center
   justify-center
+  text-sm
 `;
 
 export const Label = tw.span`

@@ -18,12 +18,12 @@ export const SliderMovieCard = ({ movie }: { movie: Movie }) => {
     <Container onClick={() => router.push(`/movie/${movie.id}`)}>
       <ImageContainer>
         <Image
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
           layout="fill"
           alt={'Movie poster'}
           objectFit="cover"
           placeholder="blur"
-          blurDataURL={`https://image.tmdb.org/t/p/w185/${movie.backdrop_path}`}
+          blurDataURL={`https://image.tmdb.org/t/p/w92/${movie.poster_path}`}
         />
       </ImageContainer>
       <DetailsContainer>

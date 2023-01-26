@@ -62,6 +62,20 @@ export const HeaderDetails = tw.div`
   lg:grid-cols-2
 `;
 
+export const FavoriteIconContainer = tw.div`
+  flex
+  items-center
+  flex-col
+  select-none
+  hover:cursor-pointer
+`;
+
+export const HeaderIconsContainer = tw.div`
+  flex
+  justify-around
+  items-center
+`;
+
 export const BackdropGradient = tw.div`
   absolute
   w-full
@@ -69,4 +83,8 @@ export const BackdropGradient = tw.div`
   bg-black
   bg-opacity-60
   z-10
+`;
+
+export const IconLabel = tw.span`
+  mt-2
 `;
