@@ -8,19 +8,13 @@ export default async function userHandler(
   req: NextApiRequest,
   res: NextApiResponse<(Movie | Show)[]>
 ) {
-  const { method, body } = req;
+  const { body } = req;
 
   const { keyword } = body;
-
-  console.log('keyword', keyword);
 
   const key = `movie/search/${keyword}`;
 
   const cachedMovie = await redis.get(key);
-
-  console.log(
-    `https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXTJS_TMDB_API_KEY}&language=en-US&page=1&include_adult=false&query=${keyword}`
-  );
 
   if (cachedMovie) {
     return res.status(200).json(JSON.parse(cachedMovie));

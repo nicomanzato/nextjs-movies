@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { Container } from './Loader.styles';
-import { SVG, IconContainer } from './Loader.styles';
+
+import { Container, IconContainer, SVG } from './Loader.styles';
 
 export const Loader = () => {
   const router = useRouter();
