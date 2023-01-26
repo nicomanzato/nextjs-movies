@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { Configuration, OpenAIApi } from 'openai';
-import { getDetailedMovie } from 'services/movie.service';
 import { redis } from 'utils/redis';
 
 export default async function userHandler(
