@@ -44,7 +44,7 @@ const Home = ({ nowPlayingMovies, popularMovies }: Props) => {
   return (
     <HomeTemplate
       nowPlayingMovies={nowPlayingMovies}
-      popularMovies={popularMovies}
+      popularMoviesOrShow={popularMovies}
       favoriteMovies={favoriteMovies}
     />
   );

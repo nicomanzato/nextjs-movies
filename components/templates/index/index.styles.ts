@@ -18,6 +18,10 @@ export const SliderContainer = tw.div`
   my-6
 `;
 
+export const ToogleGroupContainer = tw.div`
+  my-4
+`;
+
 export const Section = tw.section`
   py-2
   w-full

@@ -1,7 +1,7 @@
 import tw from 'twin.macro';
 
 export const Container = tw.div`
-  py-16
+  lg:py-16
   flex
   justify-center
   items-center
