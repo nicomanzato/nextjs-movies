@@ -16,7 +16,7 @@ export default async function userHandler(
     const cachedMovie = await redis.get(key);
 
     if (cachedMovie) {
-      // return res.status(200).json(JSON.parse(cachedMovie));
+      return res.status(200).json(JSON.parse(cachedMovie));
     }
 
     const moviePromise = http.get<Movie>(

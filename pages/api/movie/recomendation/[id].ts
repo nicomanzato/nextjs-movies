@@ -8,7 +8,7 @@ export default async function userHandler(
 ) {
   const { method, query, body } = req;
 
-  const MAX_AGE = 60_000_000 * 60;
+  const MAX_AGE = 60_000 * 60;
   const EXPIRY_MS = `PX`;
 
   if (method === 'POST') {
@@ -49,13 +49,6 @@ export default async function userHandler(
 
       return res.status(200).json(recomendationBody);
     } catch {
-      await redis.set(
-        key,
-        JSON.stringify({ recomendation: 'No recomendation available' }),
-        EXPIRY_MS,
-        MAX_AGE
-      );
-
       return res
         .status(200)
         .json({ recomendation: 'No recomendation available' });
