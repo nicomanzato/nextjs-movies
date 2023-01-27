@@ -36,6 +36,8 @@ export default async function userHandler(
 
       const recomendation = response.data.choices[0].text?.replaceAll('\n', '');
 
+      console.log(recomendation);
+
       const recomendationBody = {
         recomendation: recomendation || 'No recomendation available',
       };
