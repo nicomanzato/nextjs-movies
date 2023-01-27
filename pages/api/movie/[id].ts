@@ -29,6 +29,8 @@ export default async function userHandler(
 
     const [movie, reviews] = await Promise.all([moviePromise, reviewPromise]);
 
+    console.log(movie);
+
     let generatedRecomendation = 'No recomendation available';
 
     try {
@@ -43,6 +45,8 @@ export default async function userHandler(
     } catch (error) {
       console.log(error);
     }
+
+    console.log(generatedRecomendation);
 
     const MAX_AGE = 60_000 * 60;
     const EXPIRY_MS = `PX`;
