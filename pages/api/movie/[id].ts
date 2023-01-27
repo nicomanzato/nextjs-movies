@@ -29,16 +29,21 @@ export default async function userHandler(
 
     const [movie, reviews] = await Promise.all([moviePromise, reviewPromise]);
 
-    const { recomendation } = await http.get<{ recomendation: string }>(
-      `${process.env.HOST}/api/movie/recomendation/${id}`,
-      {
-        body: JSON.stringify({ name: movie.title }),
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    let generatedRecomendation = 'No recomendation available';
+
+    try {
+      const { recomendation } = await http.get<{ recomendation: string }>(
+        `${process.env.HOST}/api/movie/recomendation/${id}`,
+        {
+          body: JSON.stringify({ name: movie.title }),
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      generatedRecomendation = recomendation;
+    } catch {}
 
     const MAX_AGE = 60_000 * 60;
     const EXPIRY_MS = `PX`;
@@ -46,7 +51,7 @@ export default async function userHandler(
     const movieWithReview: MovieWithReview = {
       ...movie,
       reviews: reviews.results,
-      recomendation,
+      recomendation: generatedRecomendation,
     };
 
     await redis.set(key, JSON.stringify(movieWithReview), EXPIRY_MS, MAX_AGE);
