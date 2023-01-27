@@ -58,7 +58,7 @@ export const redis = {
     instance.quit();
     return value;
   },
-  set: async (key: string, value: string, expiry?: number, maxAge?: number) => {
+  set: async (key: string, value: string, expiry: any, maxAge?: any) => {
     const instance = createRedisInstance();
     await instance.set(key, value, expiry, maxAge);
     instance.quit();
