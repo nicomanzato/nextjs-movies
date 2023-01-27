@@ -1,5 +1,5 @@
 import { Item } from '@radix-ui/react-toggle-group';
-import tw, { styled, css, theme } from 'twin.macro';
+import tw, { css, styled, theme } from 'twin.macro';
 
 export const StyledToogleGroupItem = styled(Item)(() => [
   tw`
