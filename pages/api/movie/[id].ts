@@ -44,7 +44,7 @@ export default async function userHandler(
       );
       generatedRecomendation = recomendation;
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
 
     const MAX_AGE = 60_000 * 60;
