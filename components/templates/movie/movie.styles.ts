@@ -17,7 +17,7 @@ export const PosterContainer = tw.div`
   w-[240px]
   -mt-48
   mx-auto
-  z-20
+  z-10
   lg:mx-8
   
 `;
