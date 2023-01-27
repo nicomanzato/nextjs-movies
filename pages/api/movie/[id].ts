@@ -1,5 +1,6 @@
 import type { Movie, MovieReview, MovieWithReview } from 'models/movies';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { Configuration, OpenAIApi } from 'openai';
 import { http } from 'utils/http';
 import { redis } from 'utils/redis';
 
@@ -29,24 +30,28 @@ export default async function userHandler(
 
     const [movie, reviews] = await Promise.all([moviePromise, reviewPromise]);
 
-    console.log(movie);
-
     let generatedRecomendation = 'No recomendation available';
 
     try {
-      const { recomendation } = await http.get<{ recomendation: string }>(
-        `${process.env.HOST}/api/movie/recomendation/${id}`,
-        {
-          body: JSON.stringify({ name: movie.title }),
-          method: 'POST',
-        }
-      );
-      generatedRecomendation = recomendation;
+      const configuration = new Configuration({
+        apiKey: process.env.OPENAI_API_KEY,
+      });
+
+      const openai = new OpenAIApi(configuration);
+
+      const response = await openai.createCompletion({
+        model: 'text-davinci-003',
+        prompt: `Why should I watch ${movie.title}?`,
+        temperature: 1,
+        max_tokens: 4000,
+      });
+
+      generatedRecomendation =
+        response.data.choices[0].text?.replaceAll('\n', '') ??
+        'No recomendation available';
     } catch (error) {
       console.log(error);
     }
-
-    console.log(generatedRecomendation);
 
     const MAX_AGE = 60_000 * 60;
     const EXPIRY_MS = `PX`;
