@@ -37,9 +37,6 @@ export default async function userHandler(
         {
           body: JSON.stringify({ name: movie.title }),
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
         }
       );
       generatedRecomendation = recomendation;
