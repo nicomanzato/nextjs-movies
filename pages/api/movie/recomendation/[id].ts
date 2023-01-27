@@ -36,20 +36,13 @@ export default async function userHandler(
 
       const recomendation = response.data.choices[0].text?.replaceAll('\n', '');
 
-      console.log(recomendation);
-
-      const recomendationBody = {
+      const responseBody = {
         recomendation: recomendation || 'No recomendation available',
       };
 
-      await redis.set(
-        key,
-        JSON.stringify(recomendationBody),
-        EXPIRY_MS,
-        MAX_AGE
-      );
+      await redis.set(key, JSON.stringify(responseBody), EXPIRY_MS, MAX_AGE);
 
-      return res.status(200).json(recomendationBody);
+      return res.status(200).json(responseBody);
     } catch {
       return res
         .status(200)
