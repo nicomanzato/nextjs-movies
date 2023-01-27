@@ -46,19 +46,21 @@ export function createRedisInstance(config = getRedisConfiguration()) {
 
     return redis;
   } catch (e) {
-    redis.quit();
+    // redis.quit();
     throw new Error(`[Redis] Could not create a Redis instance`);
   }
 }
 
-export const redis = createRedisInstance();
-
-process.on('SIGINT', function () {
-  redis.quit();
-  console.log('redis client quit');
-});
-
-process.on('exit', function () {
-  redis.quit();
-  console.log('redis client quit');
-});
+export const redis = {
+  get: async (key: string) => {
+    const instance = createRedisInstance();
+    const value = await instance.get(key);
+    instance.quit();
+    return value;
+  },
+  set: async (key: string, value: string) => {
+    const instance = createRedisInstance();
+    await instance.set(key, value);
+    instance.quit();
+  },
+};
