@@ -13,5 +13,4 @@ export const Container = tw.div`
 `;
 
 export const Label = tw.span`
-  italic
 `;
