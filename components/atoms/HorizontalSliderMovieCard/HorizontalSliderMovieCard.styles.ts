@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion';
 import tw from 'twin.macro';
 
-export const Container = tw.div`
+export const Container = tw(motion.div)`
   bg-gray-600
   h-44
   rounded-2xl

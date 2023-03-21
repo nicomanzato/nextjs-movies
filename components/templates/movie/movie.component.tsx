@@ -1,7 +1,7 @@
 import { Genre } from 'components/atoms/Genre/Genre.component';
 import { FavoriteIcon } from 'components/atoms/Icon/FavoriteIcon.component';
 import { PageLayout } from 'components/atoms/PageLayout/PageLayout.component';
-import { StatIndicator } from 'components/StatIndicator/StatIndicator.component';
+import { StatIndicator } from 'components/atoms/StatIndicator/StatIndicator.component';
 import type { MovieWithReview } from 'models/movies';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';

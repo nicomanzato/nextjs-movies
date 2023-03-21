@@ -21,7 +21,12 @@ export const HorizontalSliderMovieCard = ({ movie }: Props) => {
   };
 
   return (
-    <Container onClick={handleOnClick}>
+    <Container
+      onClick={handleOnClick}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.25 }}
+    >
       <Image
         src={`https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`}
         layout={'fill'}
